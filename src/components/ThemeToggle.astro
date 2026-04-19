@@ -1,0 +1,46 @@
+---
+---
+<button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему" title="Переключить тему">
+  <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+  </svg>
+  <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    color: var(--text);
+    border: 1px solid var(--border-2);
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+    position: relative;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle svg {
+    position: absolute;
+    transition: opacity 0.35s, transform 0.45s cubic-bezier(.25,.46,.45,.94);
+  }
+  [data-theme="cream"] .icon-sun  { opacity: 1; transform: rotate(0) scale(1); }
+  [data-theme="cream"] .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+  [data-theme="sunset"] .icon-sun  { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  [data-theme="sunset"] .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+</style>
+
+<script>
+  const btn = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  btn?.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') || 'cream';
+    const next = current === 'cream' ? 'sunset' : 'cream';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('manifik-theme', next);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', next === 'cream' ? '#f6f0e7' : '#231510');
+  });
+</script>

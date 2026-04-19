@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Ambience from '../components/Ambience.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Manifesto from '../components/Manifesto.astro';
+import About from '../components/About.astro';
+import Services from '../components/Services.astro';
+import Teacher from '../components/Teacher.astro';
+import Path from '../components/Path.astro';
+import Moments from '../components/Moments.astro';
+import Reviews from '../components/Reviews.astro';
+import Faq from '../components/Faq.astro';
+import Contacts from '../components/Contacts.astro';
+---
+<Layout>
+  <Ambience />
+  <Nav />
+  <Hero />
+  <Manifesto />
+  <About />
+  <Services />
+  <Teacher />
+  <Path />
+  <Moments />
+  <Reviews />
+  <Faq />
+  <Contacts />
+
+  <footer class="footer">
+    <div class="container-x footer__inner">
+      <div class="footer__brand">
+        <span class="serif brand">Manifik</span>
+        <span class="footer__tagline">школа, где слышат</span>
+      </div>
+      <div class="footer__col">
+        <div class="footer__label">Контакты</div>
+        <a href="tel:+79154084012">+7 915 408-40-12</a>
+        <a href="tel:+79955084012">+7 995 508-40-12</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__label">Адрес</div>
+        <span>Орехово-Зуево</span>
+        <span>ул. Ленина, 99</span>
+      </div>
+      <div class="footer__col">
+        <div class="footer__label">© 2026</div>
+        <span>Школа вокала «Манифик»</span>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 56px 0 32px;
+    margin-top: 60px;
+  }
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .footer__brand span:first-child {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .footer__tagline {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .footer__col a,
+  .footer__col span {
+    font-size: 13px;
+    color: var(--muted);
+    transition: color 0.3s;
+  }
+  .footer__col a:hover { color: var(--accent); }
+  .footer__label {
+    font-size: 11px !important;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text) !important;
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 900px) {
+    .footer__inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 560px) {
+    .footer__inner { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => obs.observe(el));
+</script>

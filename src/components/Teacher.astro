@@ -1,0 +1,480 @@
+---
+const team = [
+  {
+    name: 'Мария Романова',
+    role: 'Основатель · Вокал',
+    years: '8 лет',
+    photo: '/img/team/maria.webp',
+    bio: 'Автор и композитор песен, идейный вдохновитель школы. Выпускница ВлГУ (эстрадно-джазовая кафедра), фортепианная школа. Создаёт уникальную атмосферу творчества и поддержки.',
+    badge: 'Основатель',
+  },
+  {
+    name: 'Маргарита Шавалиева',
+    role: 'Английский · Автор песен',
+    years: '5 лет',
+    photo: '/img/team/margarita.webp',
+    bio: 'Преподаватель английского и автор песен на английском. Высшее лингвистическое (ВлГУ), сертификация TESOL. Поможет заговорить и писать свои песни на английском.',
+  },
+  {
+    name: 'Анастасия Перун',
+    role: 'Психолог · Арт-терапевт',
+    years: '2 года',
+    photo: '/img/team/anastasia.webp',
+    bio: 'Помогает справиться с волнением перед выступлениями, раскрыть творческий потенциал. Практикующий психолог, продолжает обучение в Московском институте психоанализа.',
+  },
+  {
+    name: 'Алеся Маленкова',
+    role: 'Вокал · Фортепиано · Сольфеджио',
+    years: '8 + 12 лет',
+    photo: '/img/team/alesya.webp',
+    bio: 'Наша гордость — выпускница РАМ им. Гнесиных (эстрадно-джазовый вокал). 8 лет вокала и 12 лет фортепиано. Поможет и с голосом, и с музыкальной грамотой.',
+  },
+  {
+    name: 'Елена Гусаренко',
+    role: 'Вокал',
+    years: '4 года',
+    photo: '/img/team/elena.webp',
+    bio: 'Чуткий и внимательный педагог по вокалу. Педагогическое образование (ГГТУ), профессиональная переподготовка. Находит подход к каждому ученику.',
+  },
+];
+---
+<section class="teacher" id="teacher">
+  <div class="container-x">
+    <!-- Founder feature -->
+    <div class="founder">
+      <!-- Photo -->
+      <div class="founder__visual reveal-left">
+        <div class="founder__photo-frame">
+          <img src="/img/founder.webp" alt="Мария Романова — основатель школы вокала Manifik" loading="lazy" decoding="async" />
+        </div>
+        <div class="founder__accent"></div>
+      </div>
+
+      <!-- Text -->
+      <div class="founder__text reveal-right">
+        <div class="sec-tag">Основатель</div>
+        <h2 class="sec-title"><em>Мария</em><br/>Романова.</h2>
+
+        <blockquote class="founder__quote serif">
+          «Моя задача — не научить петь, а помочь услышать собственный голос. Остальное — дело техники и времени.»
+        </blockquote>
+
+        <div class="founder__bio">
+          <p><strong>Основательница и идейный вдохновитель школы «<span class="brand">Manifik</span>».</strong> Автор и композитор песен, педагог по вокалу.</p>
+          <p>Высшее музыкальное образование — ВлГУ, эстрадно-джазовая кафедра. Закончила музыкальную школу по классу фортепиано. Постоянно повышает квалификацию, чтобы быть в курсе последних тенденций вокальной педагогики.</p>
+          <p>Маша — не только талантливый музыкант, но и человек, который создаёт уникальную атмосферу творчества и поддержки для всех вокруг.</p>
+        </div>
+
+        <div class="founder__chips">
+          <div class="chip">
+            <div class="chip__n">8</div>
+            <div class="chip__l">лет преподавания<br/>вокала</div>
+          </div>
+          <div class="chip">
+            <div class="chip__n">100+</div>
+            <div class="chip__l">учеников<br/>в год</div>
+          </div>
+          <div class="chip">
+            <div class="chip__n">♪</div>
+            <div class="chip__l">автор<br/>и композитор</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team grid -->
+    <div class="team reveal" id="team">
+      <div class="team__head">
+        <div class="sec-tag">Команда</div>
+        <h3 class="team__title">Школа — это <em class="serif">мы все</em></h3>
+        <p class="team__sub">
+          Команда увлечённых педагогов и специалистов. У нас командная работа, а не соперничество —
+          можно попробовать занятия с каждым преподавателем и выбрать того, кто подойдёт по душе и запросу.
+          Некоторые ученики занимаются сразу у нескольких.
+        </p>
+      </div>
+
+      <!-- Group photo — shown first, sets the tone -->
+      <div class="team__group reveal">
+        <img src="/img/team.webp" alt="Команда школы вокала Manifik" loading="lazy" decoding="async" />
+        <div class="team__group-label serif">«Команда <span class="brand">Manifik</span>»</div>
+      </div>
+
+      <div class="team__toggle-wrap">
+        <button type="button" class="team__toggle" id="teamToggle" aria-expanded="false" aria-controls="teamReveal">
+          <span class="team__toggle-label" data-open="Свернуть" data-closed="Познакомиться с командой">Познакомиться с командой</span>
+          <svg class="team__toggle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="team__reveal" id="teamReveal" hidden>
+      <div class="team__grid">
+        {team.map((t, i) => (
+          <article class="tcard reveal" style={`transition-delay: ${0.08 + i * 0.06}s`}>
+            <div class="tcard__photo">
+              <img
+                src={t.photo}
+                alt={t.name}
+                decoding="async"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="tcard__placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="12" cy="8" r="4"/>
+                  <path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
+                </svg>
+                <span class="tcard__placeholder-sub">{t.name.split(' ')[0]}</span>
+              </div>
+              {t.badge && <div class="tcard__badge">{t.badge}</div>}
+            </div>
+            <div class="tcard__body">
+              <div class="tcard__head">
+                <h4 class="tcard__name serif">{t.name}</h4>
+                <span class="tcard__years">{t.years}</span>
+              </div>
+              <div class="tcard__role">{t.role}</div>
+              <p class="tcard__bio">{t.bio}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('teamToggle');
+  const panel = document.getElementById('teamReveal');
+  if (btn && panel) {
+    const label = btn.querySelector('.team__toggle-label') as HTMLElement | null;
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        btn.setAttribute('aria-expanded', 'false');
+        panel.classList.remove('is-open');
+        if (label) label.textContent = label.dataset.closed || '';
+        panel.addEventListener('transitionend', () => {
+          if (btn.getAttribute('aria-expanded') === 'false') panel.hidden = true;
+        }, { once: true });
+      } else {
+        panel.hidden = false;
+        // force reflow so transition runs
+        void panel.offsetHeight;
+        btn.setAttribute('aria-expanded', 'true');
+        panel.classList.add('is-open');
+        if (label) label.textContent = label.dataset.open || '';
+      }
+    });
+  }
+</script>
+
+<style>
+  .teacher { padding: 80px 0 120px; position: relative; }
+
+  /* ─── FOUNDER BLOCK ─── */
+  .founder {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 120px;
+  }
+  .founder__visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    max-width: 480px;
+  }
+  .founder__photo-frame {
+    width: 100%; height: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-2);
+    z-index: 2;
+  }
+  .founder__photo-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(.25,.46,.45,.94);
+  }
+  .founder__visual:hover .founder__photo-frame img { transform: scale(1.04); }
+  .founder__accent {
+    position: absolute;
+    right: -30px; top: 30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.55;
+    filter: blur(60px);
+    z-index: 1;
+  }
+
+  .sec-title em {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .founder__quote {
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.4;
+    color: var(--text);
+    font-style: italic;
+    padding: 20px 0;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    margin-bottom: 30px;
+  }
+  .founder__bio p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .founder__bio strong { color: var(--text); font-weight: 600; }
+
+  .founder__chips {
+    display: flex;
+    gap: 24px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .chip { display: flex; flex-direction: column; gap: 4px; }
+  .chip__n {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .chip__l {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+  }
+
+  /* ─── TEAM ─── */
+  .team {
+    border-top: 1px solid var(--border);
+    padding-top: 80px;
+  }
+  .team__head {
+    max-width: 720px;
+    margin-bottom: 48px;
+  }
+  .team__title {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .team__title em {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .team__sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ─── TEAM CARDS ─── */
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .tcard {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), border-color 0.4s, box-shadow 0.4s;
+  }
+  .tcard:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklab, var(--accent) 35%, transparent);
+    box-shadow: 0 20px 40px color-mix(in oklab, var(--accent) 12%, transparent);
+  }
+  .tcard__photo {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: var(--bg-soft);
+    overflow: hidden;
+  }
+  .tcard__photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(.25,.46,.45,.94);
+  }
+  .tcard:hover .tcard__photo img { transform: scale(1.04); }
+  .tcard__placeholder {
+    display: none;
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--muted);
+    background: linear-gradient(160deg, var(--bg-soft), color-mix(in oklab, var(--accent-2) 18%, var(--bg-soft)));
+  }
+  .tcard__placeholder-sub {
+    font-size: 14px;
+    color: var(--text);
+    font-style: italic;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .tcard__badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .tcard__body {
+    padding: 22px 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .tcard__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .tcard__name {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .tcard__years {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .tcard__role {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tcard__bio {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-top: 6px;
+  }
+
+  /* Group photo — shown above individual cards */
+  .team__group {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 30px 70px color-mix(in oklab, var(--accent) 10%, transparent);
+    margin-bottom: 48px;
+  }
+  .team__group img {
+    width: 100%;
+    display: block;
+    transition: transform 0.8s cubic-bezier(.25,.46,.45,.94);
+  }
+  .team__group:hover img { transform: scale(1.02); }
+  .team__group-label {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    padding: 8px 16px;
+    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-radius: 999px;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--accent);
+    border: 1px solid var(--border);
+  }
+
+  /* ─── Team toggle ─── */
+  .team__toggle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .team__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid var(--border-2);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s, color 0.3s;
+  }
+  .team__toggle:hover {
+    border-color: var(--accent);
+    background: color-mix(in oklab, var(--accent) 10%, transparent);
+    color: var(--accent);
+  }
+  .team__toggle-icon {
+    transition: transform 0.4s cubic-bezier(.25,.46,.45,.94);
+  }
+  .team__toggle[aria-expanded="true"] .team__toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  .team__reveal {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.6s cubic-bezier(.25,.46,.45,.94), opacity 0.4s ease;
+  }
+  .team__reveal.is-open {
+    max-height: 5000px;
+    opacity: 1;
+  }
+
+  @media (max-width: 1000px) {
+    .team__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .founder {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      margin-bottom: 80px;
+    }
+    .founder__visual { max-width: 360px; margin: 0 auto; }
+    .team { padding-top: 60px; }
+    .team__grid { grid-template-columns: 1fr; }
+    .chip__n { font-size: 32px; }
+  }
+</style>

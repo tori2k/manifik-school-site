@@ -1,0 +1,143 @@
+---
+const reviews = [
+  {
+    name: 'Юлия Пронина',
+    detail: 'Вокал · 3 месяца',
+    text: 'Прекрасная школа! У меня была мечта научиться петь — и к счастью я попала в нужное место, где чувствуешь себя уютно как дома. Преподаватель всё объясняет очень хорошо, учимся не только вокалу, но и дыханию и правильной дикции. После занятия выходишь счастливой и вдохновленной. Самое лучшее место!',
+  },
+  {
+    name: 'Илья Белов',
+    detail: 'Вокал · более года',
+    text: 'Посещаем занятия уже почти год. Вожу сына 7-ми лет. На уроках упор сделан не только на вокал, но также и на дикцию. Результат потрясающий! Стала лучше поставлена речь, развился слух и голос. Ребёнок получает огромное удовольствие от уроков и от преподавателя, который с огромной любовью относится к каждому ребёнку и взрослому. Рекомендуем!',
+  },
+  {
+    name: 'Антон Шибилкин',
+    detail: 'Вокал · с 2021 года',
+    text: 'Отличная школа вокала! Пришёл просто с желанием слегка разнообразить свою жизнь, а в итоге нашёл новое полноценное хобби и новых интересных знакомых. На занятиях преподаватель подбирает необходимые именно мне упражнения и помогает выбрать песни, которые могут раскрыть мой потенциал. От каждого занятия получаешь заряд позитивной энергии, будто приходишь в гости к старым друзьям.',
+  },
+];
+---
+<section class="reviews" id="reviews">
+  <div class="container-x">
+    <div class="reviews__header reveal">
+      <div class="sec-tag">Отзывы</div>
+      <h2 class="sec-title">Наши ученики <em>рассказывают</em></h2>
+      <p class="sec-sub">Живые истории наших учеников — от первого шага к сцене.</p>
+    </div>
+
+    <div class="reviews__grid">
+      {reviews.map((r, i) => (
+        <article class="review reveal" style={`transition-delay: ${0.1 + i * 0.1}s`}>
+          <!-- Quote mark -->
+          <div class="review__quote serif">"</div>
+
+          <p class="review__text">{r.text}</p>
+
+          <footer class="review__footer">
+            <div class="review__author">
+              <div class="review__avatar">
+                {r.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
+              </div>
+              <div>
+                <div class="review__name">{r.name}</div>
+                <div class="review__detail">{r.detail}</div>
+              </div>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews { padding: 80px 0 120px; position: relative; }
+  .reviews__header { margin-bottom: 60px; max-width: 720px; }
+
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .review {
+    position: relative;
+    padding: 40px 32px 28px;
+    border-radius: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), border-color 0.4s, box-shadow 0.4s;
+    overflow: hidden;
+  }
+  .review:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in oklab, var(--accent) 30%, transparent);
+    box-shadow: 0 30px 60px color-mix(in oklab, var(--accent) 10%, transparent);
+  }
+
+  .review__quote {
+    position: absolute;
+    top: 14px; right: 24px;
+    font-size: 88px;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.22;
+    font-family: 'Playfair Display', serif;
+    pointer-events: none;
+  }
+
+  .review__text {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.75;
+    margin-bottom: 28px;
+    flex: 1;
+  }
+
+  .review__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .review__author {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .review__avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: color-mix(in oklab, var(--accent) 15%, transparent);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .review__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .review__detail {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 1100px) {
+    .reviews__grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    .reviews__grid { grid-template-columns: 1fr; }
+  }
+</style>
+

@@ -1,0 +1,173 @@
+---
+---
+<section class="about" id="about">
+  <div class="container-x about__inner">
+    <div class="about__head reveal">
+      <div class="sec-tag">О школе</div>
+      <h2 class="sec-title">Пространство, где<br/><em>рождается голос</em></h2>
+    </div>
+
+    <div class="about__body">
+      <p class="about__lead reveal d1">
+        <strong class="brand">Manifik</strong> — это пространство, где человека учат не только музыке,
+        а <em class="serif">контакту с собой</em>. К нам приходят дети и взрослые,
+        новички и те, кто когда-то уже пел. Очень часто — люди, которые много лет были уверены,
+        что «у них нет голоса» или «петь уже поздно».
+      </p>
+
+      <p class="about__p reveal d1">
+        Мы не начинаем с правильных нот. Мы начинаем с <strong>дыхания, внимания к телу и ощущения опоры</strong>.
+        Когда уходит напряжение, голос появляется сам — живой, тёплый и настоящий.
+      </p>
+
+      <div class="about__pull reveal d2">
+        «На занятиях важно не сравнение и не скорость. Важно, чтобы человек
+        <em> постепенно перестал бояться звучать</em> — сначала на уроке, а потом и в жизни.»
+      </div>
+
+      <p class="about__p reveal d2">
+        Мы бережно относимся к ученикам, не ломаем голос и не требуем соответствовать ожиданиям.
+        Кто-то приходит ради сцены, а кто-то — чтобы просто петь для себя.
+        И оба пути <strong>одинаково ценны</strong>.
+      </p>
+
+      <h3 class="about__h3 reveal d2 serif">
+        Со временем вокруг школы складывается настоящее <em>сообщество</em>.
+      </h3>
+
+      <p class="about__p reveal d3">
+        Мы вместе отмечаем дни рождения, смотрим фильмы, поддерживаем перед выступлениями
+        и радуемся успехам друг друга. Человек приходит на урок — а остаётся в тёплом, принимающем круге.
+      </p>
+
+      <div class="about__closing reveal d3">
+        <p class="about__closing-line">Поэтому <span class="brand">Manifik</span> — это не только про <em class="serif">вокал</em> или <em class="serif">фортепиано</em>.</p>
+        <p class="about__closing-line">Это место, где можно <em class="serif">пробовать</em>, <em class="serif">ошибаться</em>, <em class="serif">смеяться</em></p>
+        <p class="about__closing-line">и однажды заметить, что звучать — <strong>безопасно</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 20px 0 100px;
+    position: relative;
+  }
+  .about__inner {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about__head {
+    position: sticky;
+    top: 120px;
+  }
+  .about__head .sec-title {
+    font-size: clamp(36px, 4.5vw, 56px);
+  }
+  .about__head em {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .about__body {
+    max-width: 720px;
+    padding-top: 10px;
+  }
+
+  .about__lead {
+    font-size: clamp(19px, 2vw, 24px);
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 32px;
+    letter-spacing: -0.005em;
+  }
+  .about__lead strong { color: var(--text); font-weight: 600; }
+  .about__lead em {
+    color: var(--accent);
+    font-style: italic;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .about__p {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .about__p strong { color: var(--text); font-weight: 600; }
+
+  .about__pull {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    font-style: italic;
+    color: var(--text);
+    padding: 24px 0 24px 28px;
+    border-left: 2px solid var(--accent);
+    margin: 12px 0 32px;
+  }
+  .about__pull em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .about__h3 {
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--text);
+    margin: 40px 0 20px;
+    letter-spacing: -0.01em;
+    max-width: 640px;
+  }
+  .about__h3 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .about__closing {
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .about__closing-line {
+    font-size: clamp(17px, 1.9vw, 22px);
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .about__closing-line:last-child { margin-bottom: 0; }
+  .about__closing-line em {
+    color: var(--accent);
+    font-style: italic;
+    font-family: 'Playfair Display', Georgia, serif;
+    padding: 0 2px;
+  }
+  .about__closing-line strong {
+    color: var(--accent);
+    font-weight: 600;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+  }
+
+  @media (max-width: 1000px) {
+    .about__inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .about__head {
+      position: static;
+    }
+  }
+  @media (max-width: 700px) {
+    .about { padding: 20px 0 60px; }
+    .about__lead { font-size: 17px; margin-bottom: 24px; }
+    .about__pull { padding-left: 18px; margin: 8px 0 24px; }
+  }
+</style>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manifik-school.ru/sitemap-index.xml

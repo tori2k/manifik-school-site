@@ -1,0 +1,132 @@
+---
+---
+<section class="manifest" id="manifest">
+  <div class="container-x">
+    <div class="manifest__head reveal">
+      <div class="sec-tag">В нашей школе</div>
+    </div>
+
+    <div class="manifest__body">
+      <h2 class="manifest__title reveal d1">
+        В <span class="brand">Manifik</span> мы учим<br/>
+        не только <em class="serif">петь</em> или <em class="serif">играть</em>.<br/>
+        Мы учим <em class="serif">слышать себя</em>.
+      </h2>
+
+      <div class="manifest__quotes reveal d2">
+        <p class="manifest__q">«Я всегда стеснялся своего голоса»</p>
+        <p class="manifest__q">«Мне говорили, что у меня нет слуха»</p>
+        <p class="manifest__q">«Я боюсь звучать при других»</p>
+      </div>
+
+      <p class="manifest__lead reveal d3">
+        Многие приходят к нам с такими фразами.
+        И постепенно оказывается — дело никогда <em class="serif">не было в вокале</em>.
+      </p>
+
+      <div class="manifest__divider reveal d3"></div>
+
+      <p class="manifest__body-text reveal d4">
+        Голос — это не только про музыку. Это про уверенность, дыхание, эмоции
+        и <strong>право быть услышанным</strong>.
+      </p>
+
+      <p class="manifest__body-text reveal d4">
+        У нас можно заниматься взрослым и детям, с нуля или с опытом.
+        Мы <em class="serif">не сравниваем</em>, <em class="serif">не торопим</em> и <em class="serif">не ломаем</em>.
+        Мы помогаем человеку почувствовать опору — сначала в звуке, а потом и в себе.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .manifest {
+    padding: 140px 0 100px;
+    position: relative;
+  }
+  .manifest__head { margin-bottom: 40px; }
+  .manifest__body {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .manifest__title {
+    font-size: clamp(36px, 6vw, 80px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    margin-bottom: 70px;
+    text-align: left;
+  }
+  .manifest__title em {
+    color: var(--accent);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .manifest__quotes {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 60px;
+    border-left: 2px solid var(--accent);
+    padding-left: 28px;
+  }
+  .manifest__q {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  .manifest__lead {
+    font-size: clamp(18px, 2.2vw, 24px);
+    line-height: 1.55;
+    color: var(--text);
+    font-weight: 400;
+    margin-bottom: 60px;
+    max-width: 780px;
+    letter-spacing: -0.005em;
+  }
+  .manifest__lead em {
+    color: var(--accent);
+    font-style: italic;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .manifest__divider {
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 0 60px 0;
+  }
+
+  .manifest__body-text {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 22px;
+    max-width: 780px;
+  }
+  .manifest__body-text strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .manifest__body-text em {
+    color: var(--accent);
+    font-style: italic;
+    font-family: 'Playfair Display', Georgia, serif;
+    padding: 0 2px;
+  }
+
+  @media (max-width: 900px) {
+    .manifest { padding: 80px 0 60px; }
+    .manifest__title { margin-bottom: 40px; }
+    .manifest__quotes { gap: 10px; margin-bottom: 40px; padding-left: 18px; }
+    .manifest__lead { margin-bottom: 40px; }
+    .manifest__divider { margin-bottom: 40px; }
+  }
+</style>

@@ -1,0 +1,184 @@
+---
+const services = [
+  {
+    title: 'Вокал',
+    price: 'от 2 500 ₽',
+    icon: 'mic',
+    desc: 'Индивидуальные занятия для детей и взрослых. Работаем с дыханием, зажимами и звучанием, чтобы голос стал свободным и живым. Даже если вы уверены, что «не умеете петь», — это как раз хорошая отправная точка.',
+    tags: ['Дети от 6 лет', 'Взрослые', 'Онлайн']
+  },
+  {
+    title: 'Фортепиано',
+    price: 'от 2 000 ₽',
+    icon: 'piano',
+    desc: 'Спокойное и понятное обучение игре на фортепиано без давления и спешки. Подходит детям и взрослым, которые хотят научиться играть для себя, а не только «по программе».',
+    tags: ['С нуля', 'Индивидуально', 'Очно']
+  },
+  {
+    title: 'Теория музыки',
+    price: 'от 1 800 ₽',
+    icon: 'book',
+    desc: 'Помогаем разобраться в нотах и ритме так, чтобы это стало логичным и интересным. Без зубрёжки — через понимание и практику. Раз в полгода — групповой курс.',
+    tags: ['Индивидуально', 'Очно', 'Групповой курс']
+  },
+  {
+    title: 'Английский язык',
+    price: 'от 2 000 ₽',
+    icon: 'lang',
+    desc: 'Занятия в атмосфере поддержки и живого общения. Учим говорить, а не только выполнять упражнения. Помогаем с фонетикой в песне.',
+    tags: ['Индивидуально', 'Онлайн', 'Фонетика']
+  },
+  {
+    title: 'Арт-терапия',
+    price: 'По запросу',
+    icon: 'palette',
+    desc: 'Через творчество и образы мы спокойно прикасаемся к своим переживаниям и открываем те «внутренние комнаты», до которых редко добираемся в повседневной жизни. Это бережное пространство знакомства с собой.',
+    tags: ['Группа', 'Очно', 'По запросу']
+  },
+  {
+    title: 'Киноклуб',
+    price: 'По запросу',
+    icon: 'film',
+    desc: 'Встречи, где мы смотрим фильмы и обсуждаем их — про чувства, выбор и человеческие истории. Это пространство общения и бережного диалога. Собираем в осенне-зимнее время по запросу.',
+    tags: ['Сообщество', 'По запросу']
+  }
+];
+
+function iconFor(name: string) {
+  switch (name) {
+    case 'mic':    return '<path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z"/><path d="M5 11v1a7 7 0 0014 0v-1M12 19v3"/>';
+    case 'piano':  return '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v12M11 4v12M15 4v12"/><path d="M7 12h3v4H7zM11 12h3v4h-3zM15 12h3v4h-3z" fill="currentColor"/>';
+    case 'book':   return '<path d="M4 3h12a4 4 0 014 4v14H8a4 4 0 01-4-4V3zM4 17h16M12 3v14"/>';
+    case 'lang':   return '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/>';
+    case 'palette':return '<path d="M12 22a10 10 0 1110-10c0 3-2 4-4 4h-2a2 2 0 000 4 2 2 0 01-2 2h-2z"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor"/><circle cx="12" cy="7.5" r="1" fill="currentColor"/><circle cx="16.5" cy="10.5" r="1" fill="currentColor"/>';
+    case 'film':   return '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 9h20M2 15h20M7 5v14M17 5v14"/>';
+    default: return '';
+  }
+}
+---
+<section class="services" id="services">
+  <div class="container-x">
+    <div class="services__header reveal">
+      <div class="sec-tag">Направления</div>
+      <h2 class="sec-title">Чему мы <em>учим</em></h2>
+      <p class="sec-sub">Основа — вокал и музыка, но вокруг выросли пространство и сообщество. На первом занятии вместе найдём твой вектор развития — направление, темп, что откликается именно тебе.</p>
+    </div>
+
+    <div class="services__grid">
+      {services.map((s, i) => (
+        <article class="service reveal" style={`transition-delay: ${0.08 + i * 0.06}s`}>
+          <div class="service__top">
+            <div class="service__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={iconFor(s.icon)}/>
+            </div>
+            <div class="service__price">{s.price}</div>
+          </div>
+          <h3 class="service__title">{s.title}</h3>
+          <p class="service__desc">{s.desc}</p>
+          <div class="service__tags">
+            {s.tags.map(t => <span class="pill">{t}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="services__note reveal">
+      Цены указаны за 1 занятие. Пакеты занятий — со скидкой, уточни в сообщении.
+    </p>
+  </div>
+</section>
+
+<style>
+  .services { padding: 80px 0 120px; }
+  .services__header { margin-bottom: 60px; max-width: 720px; }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .service {
+    padding: 32px 28px;
+    border-radius: 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), border-color 0.4s, box-shadow 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--accent-2) 20%, transparent), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  .service:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklab, var(--accent) 35%, transparent);
+    box-shadow: 0 20px 40px color-mix(in oklab, var(--accent) 12%, transparent);
+  }
+  .service:hover::before { opacity: 1; }
+
+  .service__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .service__icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: color-mix(in oklab, var(--accent) 12%, transparent);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .service__price {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--accent);
+  }
+  .service__title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+  .service__desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .service__tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 4px;
+  }
+  .pill {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--border-2);
+    color: var(--muted);
+  }
+
+  .services__note {
+    margin-top: 40px;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    font-style: italic;
+  }
+
+  @media (max-width: 900px) {
+    .services__grid { grid-template-columns: 1fr; }
+    .services { padding: 60px 0 80px; }
+  }
+</style>

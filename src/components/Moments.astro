@@ -1,0 +1,360 @@
+---
+const moments = [
+  { src: '/img/moments/concert.mp4',     poster: '/img/moments/concert.jpg',     type: 'video', label: 'Концерт',      caption: 'Выпускное выступление' },
+  { src: '/img/moments/m01.webp',        poster: null,                           type: 'image', label: 'Занятие',      caption: 'Первые шаги у фортепиано' },
+  { src: '/img/moments/m02.webp',        poster: null,                           type: 'image', label: 'Концерт',      caption: 'Ежегодный концерт школы' },
+  { src: '/img/moments/living-room.mp4', poster: '/img/moments/living-room.jpg', type: 'video', label: 'Квартирник',   caption: 'Живой квартирник в студии' },
+  { src: '/img/moments/m06.webp',        poster: null,                           type: 'image', label: 'Ансамбль',     caption: 'Подростковый хор' },
+  { src: '/img/moments/m03.webp',        poster: null,                           type: 'image', label: 'Сцена',        caption: 'Выпускной детского направления' },
+  { src: '/img/moments/m07.webp',        poster: null,                           type: 'image', label: 'Киноклуб',     caption: 'Встречи в школе — сообщество' },
+  { src: '/img/moments/m04.webp',        poster: null,                           type: 'image', label: 'На природе',   caption: 'Летний концерт под деревом' },
+  { src: '/img/moments/m05.webp',        poster: null,                           type: 'image', label: 'День рождения', caption: 'Школе 2 года' },
+  { src: '/img/moments/m08.webp',        poster: null,                           type: 'image', label: 'Соло',          caption: 'Индивидуальное исполнение' },
+];
+---
+<section class="moments" id="moments">
+  <div class="container-x">
+    <div class="moments__head reveal">
+      <div class="sec-tag">Живые моменты</div>
+      <h2 class="sec-title">Школа — это<br/><em>живая жизнь</em></h2>
+      <p class="sec-sub">Концерты, квартирники, занятия, киноклуб, выезды на природу. У нас не только учатся — у нас становятся частью сообщества. Листай ↓</p>
+    </div>
+
+    <!-- Grid gallery -->
+    <div class="moments__grid">
+      {moments.map((m, i) => (
+        <button
+          class:list={['moment', `moment--${(i % 7) + 1}`]}
+          data-index={i}
+          data-type={m.type}
+          aria-label={`Открыть: ${m.caption}`}
+        >
+          {m.type === 'video' ? (
+            <>
+              <!-- Poster shown by default; video attaches on hover only -->
+              <img class="moment__media moment__poster" src={m.poster} alt={m.caption} loading="lazy" decoding="async" />
+              <video
+                class="moment__media moment__video"
+                data-src={m.src}
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-autoplay="hover"
+              ></video>
+            </>
+          ) : (
+            <img class="moment__media" src={m.src} alt={m.caption} loading="lazy" decoding="async" />
+          )}
+
+          {m.type === 'video' && (
+            <div class="moment__play-indicator" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg>
+            </div>
+          )}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightbox-close" aria-label="Закрыть">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Предыдущий">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Следующий">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="lightbox__inner" id="lightbox-inner"></div>
+  </div>
+</section>
+
+<style>
+  .moments { padding: 80px 0 120px; }
+  .moments__head { margin-bottom: 60px; max-width: 720px; }
+
+  /* Masonry-ish grid */
+  .moments__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 16px;
+  }
+  /* Variety in tile sizes for visual rhythm */
+  .moment--1 { grid-column: span 2; grid-row: span 2; }
+  .moment--2 { grid-column: span 1; grid-row: span 1; }
+  .moment--3 { grid-column: span 1; grid-row: span 2; }
+  .moment--4 { grid-column: span 2; grid-row: span 1; }
+  .moment--5 { grid-column: span 1; grid-row: span 1; }
+  .moment--6 { grid-column: span 2; grid-row: span 1; }
+  .moment--7 { grid-column: span 1; grid-row: span 1; }
+
+  .moment {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(.25,.46,.45,.94), box-shadow 0.4s, border-color 0.4s;
+  }
+  .moment:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+    box-shadow: 0 20px 40px color-mix(in oklab, var(--accent) 15%, transparent);
+    z-index: 2;
+  }
+
+  .moment__media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(.25,.46,.45,.94), filter 0.4s, opacity 0.4s;
+    filter: brightness(0.92);
+  }
+  .moment:hover .moment__media {
+    transform: scale(1.06);
+    filter: brightness(1);
+  }
+  /* Stack poster + video: video appears only when loaded */
+  .moment__poster {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .moment__video {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+  }
+  .moment__video[data-playing="true"] {
+    opacity: 1;
+  }
+
+  /* Play indicator for video tiles */
+  .moment__play-indicator {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 3;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .moment__play-indicator svg { margin-left: 2px; }
+  .moment:hover .moment__play-indicator {
+    background: var(--accent);
+    transform: scale(1.08);
+    border-color: transparent;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10, 6, 4, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    padding: 60px;
+  }
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .lightbox__inner {
+    max-width: 1200px;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox__inner img,
+  .lightbox__inner video {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 16px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+  }
+
+  .lightbox__close,
+  .lightbox__nav {
+    position: absolute;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .lightbox__close:hover,
+  .lightbox__nav:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+  .lightbox__close  { top: 20px; right: 20px; }
+  .lightbox__nav--prev { left: 20px; top: 50%; transform: translateY(-50%); }
+  .lightbox__nav--next { right: 20px; top: 50%; transform: translateY(-50%); }
+  .lightbox__nav:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .lightbox__caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f5e6d0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+    max-width: 80%;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .moments__grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 160px;
+      gap: 10px;
+    }
+    .moment--1 { grid-column: span 2; grid-row: span 2; }
+    .moment--2, .moment--3, .moment--5, .moment--7 {
+      grid-column: span 1; grid-row: span 1;
+    }
+    .moment--4, .moment--6 { grid-column: span 2; grid-row: span 1; }
+
+    .lightbox { padding: 20px; }
+    .lightbox__close,
+    .lightbox__nav { width: 40px; height: 40px; }
+    .lightbox__caption { font-size: 14px; bottom: 15px; }
+  }
+</style>
+
+<script>
+  // ── Hover-autoplay for video tiles (video src attached only on first hover)
+  document.querySelectorAll<HTMLVideoElement>('video[data-autoplay="hover"]').forEach((v) => {
+    const tile = v.closest('.moment');
+    const attach = () => {
+      if (!v.src && v.dataset.src) {
+        v.src = v.dataset.src;
+        v.load();
+      }
+    };
+    tile?.addEventListener('mouseenter', () => {
+      attach();
+      v.play().then(() => v.setAttribute('data-playing', 'true')).catch(() => {});
+    });
+    tile?.addEventListener('mouseleave', () => {
+      v.pause();
+      v.currentTime = 0;
+      v.removeAttribute('data-playing');
+    });
+  });
+
+  // ── Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxInner = document.getElementById('lightbox-inner');
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  const tiles = Array.from(document.querySelectorAll<HTMLElement>('.moment'));
+
+  type Slide = { src: string; type: string; caption: string };
+  const slides: Slide[] = tiles.map((t) => {
+    const type = t.dataset.type || 'image';
+    let src = '';
+    if (type === 'video') {
+      const v = t.querySelector<HTMLVideoElement>('.moment__video');
+      src = v?.dataset.src || '';
+    } else {
+      const img = t.querySelector<HTMLImageElement>('.moment__media');
+      src = img?.getAttribute('src') || '';
+    }
+    return { src, type, caption: '' };
+  });
+
+  let currentIndex = 0;
+
+  const render = (index: number) => {
+    currentIndex = (index + slides.length) % slides.length;
+    const s = slides[currentIndex];
+    if (!lightboxInner) return;
+
+    lightboxInner.innerHTML = '';
+    if (s.type === 'video') {
+      const v = document.createElement('video');
+      v.src = s.src;
+      v.controls = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.loop = true;
+      lightboxInner.appendChild(v);
+    } else {
+      const img = document.createElement('img');
+      img.src = s.src;
+      img.alt = s.caption;
+      lightboxInner.appendChild(img);
+    }
+  };
+
+  const open = (index: number) => {
+    if (!lightbox) return;
+    render(index);
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    if (!lightbox || !lightboxInner) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    // Stop any video to free resources
+    lightboxInner.querySelectorAll('video').forEach((v) => v.pause());
+  };
+
+  tiles.forEach((tile, i) => {
+    tile.addEventListener('click', () => open(i));
+  });
+
+  closeBtn?.addEventListener('click', close);
+  prevBtn?.addEventListener('click', () => render(currentIndex - 1));
+  nextBtn?.addEventListener('click', () => render(currentIndex + 1));
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) close();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox?.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') render(currentIndex - 1);
+    if (e.key === 'ArrowRight') render(currentIndex + 1);
+  });
+</script>

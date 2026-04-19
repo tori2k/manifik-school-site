@@ -1,0 +1,714 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Первые ноты',
+    subtitle: 'Укулеле с преподавателем',
+    desc: 'Первый инструмент, неуверенные пальцы, преподаватель рядом. Тревожно и немножко страшно — но первый шаг уже сделан. Дальше — только интереснее.',
+    note: 'Первая неделя',
+    channel: 'CH·01',
+    timecode: '00:00:07',
+    video: '/img/path-01.mp4',
+    videoHint: 'Укулеле с преподавателем',
+  },
+  {
+    num: '02',
+    title: 'Чувство ритма',
+    subtitle: 'Маракасы',
+    desc: 'Тело начинает слышать музыку. Маракасы, движение, первые ровные удары. Неуверенности стало меньше — появилось удовольствие от процесса.',
+    note: 'Несколько недель',
+    channel: 'CH·02',
+    timecode: '00:00:12',
+    video: '/img/path-02.mp4',
+    videoHint: 'Маракасы · ритм',
+  },
+  {
+    num: '03',
+    title: 'Твой первый голос',
+    subtitle: 'Первая песня',
+    desc: 'Тот самый момент — впервые поёшь свою песню вместе с преподавателем. Ещё немного робко, но голос уже свой. С этого кадра начинается всё остальное.',
+    note: 'Волшебный момент',
+    channel: 'CH·03',
+    timecode: '00:00:18',
+    video: '/img/path-03.mp4',
+    videoHint: 'Первая песня с преподавателем',
+  },
+  {
+    num: '04',
+    title: 'Ты уже ты',
+    subtitle: 'Свобода',
+    desc: 'Танцуешь. Поёшь. Улыбаешься. Не думаешь, как звучишь — просто кайфуешь. Это и есть результат, ради которого начинают всё.',
+    note: 'Несколько месяцев спустя',
+    channel: 'CH·04',
+    timecode: '00:00:22',
+    video: '/img/path-04.mp4',
+    videoHint: 'Кайфует и танцует',
+  },
+];
+---
+<section class="path" id="path">
+  <!-- Virtual scroll track: 6 steps + extra -->
+  <div class="path__track" style={`--count: ${steps.length}`}>
+    <div class="path__pin">
+      <div class="container-x path__inner">
+
+        <!-- LEFT: static header + dynamic info -->
+        <div class="path__info">
+          <div class="path__header">
+            <div class="sec-tag">Путь ученика</div>
+            <h2 class="path__heading">От первых <em class="serif">сомнений</em> до <em class="serif">своего голоса</em></h2>
+            <p class="path__lead">Так выглядит дорога каждого, кто приходит к нам. Скролли — и пройди по ней сам.</p>
+          </div>
+
+          <div class="path__slides">
+            {steps.map((s, i) => (
+              <div class="path__slide" data-index={i}>
+                <div class="path__num serif">{s.num}</div>
+                <h3 class="path__title">{s.title}</h3>
+                <p class="path__desc">{s.desc}</p>
+                <div class="path__note">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  {s.note}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="path__progress">
+            <span class="path__counter serif">
+              <span id="path-current">01</span>
+              <span class="path__sep">из</span>
+              <span>{String(steps.length).padStart(2, '0')}</span>
+            </span>
+            <div class="path__dots">
+              {steps.map((_, i) => (
+                <span class="path__dot" data-index={i}></span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: CRT television with tape of 4 scenes -->
+        <div class="path__visual">
+          <!-- TV body -->
+          <div class="tv">
+            <!-- Screen -->
+            <div class="tv__screen">
+              <!-- Videos stack -->
+              <div class="tv__tape">
+                {steps.map((s, i) => (
+                  <video
+                    class:list={['tv__video', i === 0 && 'active']}
+                    data-index={i}
+                    data-src={s.video}
+                    poster={s.video.replace('.mp4', '.jpg')}
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    onloadeddata="this.dataset.loaded='true'"
+                  ></video>
+                ))}
+                <!-- Placeholders shown when video not loaded -->
+                {steps.map((s, i) => (
+                  <div class:list={['tv__placeholder', i === 0 && 'active']} data-index={i}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                      <polygon points="23 7 16 12 23 17 23 7"/>
+                      <rect x="1" y="5" width="15" height="14" rx="1"/>
+                    </svg>
+                    <span class="tv__placeholder-title serif">{s.videoHint}</span>
+                    <span class="tv__placeholder-file">path-{s.num}.mp4</span>
+                  </div>
+                ))}
+              </div>
+
+              <!-- CRT overlays -->
+              <div class="tv__scanlines" aria-hidden="true"></div>
+              <div class="tv__vignette" aria-hidden="true"></div>
+              <div class="tv__static" id="tv-static" aria-hidden="true"></div>
+              <div class="tv__flicker" aria-hidden="true"></div>
+
+              <!-- On-screen display -->
+              <div class="tv__osd">
+                <div class="tv__osd-top">
+                  <span class="tv__channel" id="tv-channel">CH·01</span>
+                  <span class="tv__rec"><span class="tv__rec-dot"></span>REC</span>
+                </div>
+                <div class="tv__osd-bottom">
+                  <span class="tv__timecode" id="tv-timecode">00:00:07</span>
+                  <span class="tv__label" id="tv-label">Первые ноты</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- TV control panel -->
+            <div class="tv__controls">
+              <div class="tv__brand serif brand">Manifik</div>
+              <div class="tv__knobs">
+                <div class="tv__knob"></div>
+                <div class="tv__knob"></div>
+                <div class="tv__speaker">
+                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TV stand/shadow -->
+          <div class="tv__shadow"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .path {
+    position: relative;
+    padding: 40px 0 40px;
+  }
+  .path__track {
+    --count: 6;
+    height: calc(var(--count) * 100vh + 20vh);
+  }
+  .path__pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .path__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+    width: 100%;
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+
+  /* Info */
+  .path__info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-height: 70vh;
+    max-height: 80vh;
+  }
+  .path__header { flex-shrink: 0; }
+  .path__heading {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 18px;
+  }
+  .path__heading em {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .path__lead {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  .path__slides {
+    position: relative;
+    flex: 1;
+    min-height: 240px;
+  }
+  .path__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s cubic-bezier(.25,.46,.45,.94), transform 0.55s cubic-bezier(.25,.46,.45,.94);
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .path__slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .path__num {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+  .path__title {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .path__desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 440px;
+  }
+  .path__note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--accent) 12%, transparent);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-top: 4px;
+  }
+
+  .path__progress {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .path__counter {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--text);
+    display: flex;
+    gap: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .path__sep { color: var(--muted); font-size: 14px; align-self: flex-end; margin-bottom: 4px; }
+  .path__counter span:last-child { color: var(--muted); }
+  .path__dots {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+  }
+  .path__dot {
+    flex: 1;
+    height: 2px;
+    background: var(--border-2);
+    border-radius: 999px;
+    transition: background 0.5s;
+  }
+  .path__dot.active { background: var(--accent); }
+
+  /* ─── VISUAL: CRT TELEVISION ─── */
+  .path__visual {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tv {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(175deg, #3d2d22 0%, #291c15 100%);
+    border-radius: 28px 28px 22px 22px;
+    padding: 28px 28px 22px;
+    box-shadow:
+      inset 0 2px 4px rgba(255, 220, 180, 0.1),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+      0 4px 0 rgba(0, 0, 0, 0.3),
+      0 30px 60px rgba(0, 0, 0, 0.35);
+    z-index: 2;
+  }
+  [data-theme="cream"] .tv {
+    background: linear-gradient(175deg, #3d2d22 0%, #251a12 100%);
+  }
+
+  /* Screen */
+  .tv__screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #0a0806;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow:
+      inset 0 0 40px rgba(0, 0, 0, 0.9),
+      inset 0 0 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .tv__tape {
+    position: absolute;
+    inset: 8px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .tv__video {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(.25,.46,.45,.94);
+    filter: contrast(1.05) saturate(0.85) brightness(0.95);
+    z-index: 1;
+  }
+  .tv__video.active { opacity: 1; z-index: 2; }
+  .tv__video:not([data-loaded="true"]) { display: none; }
+
+  .tv__placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 28px;
+    color: rgba(255, 200, 150, 0.6);
+    background: radial-gradient(circle at 50% 50%, #2a1a10 0%, #0a0806 90%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 0;
+  }
+  .tv__placeholder.active { opacity: 1; }
+  /* If the corresponding video loaded, hide placeholder */
+  .tv__video[data-loaded="true"].active ~ .tv__placeholder.active {
+    opacity: 0;
+  }
+  .tv__placeholder-title {
+    font-size: 16px;
+    color: rgba(255, 220, 180, 0.9);
+    font-style: italic;
+  }
+  .tv__placeholder-file {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #e89968;
+    background: rgba(232, 153, 104, 0.15);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+
+  /* CRT scanlines */
+  .tv__scanlines {
+    position: absolute;
+    inset: 8px;
+    border-radius: 22px;
+    pointer-events: none;
+    z-index: 10;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.22) 0,
+      rgba(0, 0, 0, 0.22) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode: multiply;
+  }
+
+  /* Vignette + phosphor glow */
+  .tv__vignette {
+    position: absolute;
+    inset: 8px;
+    border-radius: 22px;
+    pointer-events: none;
+    z-index: 11;
+    box-shadow:
+      inset 0 0 80px rgba(0, 0, 0, 0.7),
+      inset 0 0 20px rgba(232, 153, 104, 0.15);
+    background: radial-gradient(
+      ellipse at 50% 50%,
+      transparent 40%,
+      rgba(20, 10, 5, 0.4) 95%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+
+  /* Static (noise) overlay — shown during channel change */
+  .tv__static {
+    position: absolute;
+    inset: 8px;
+    border-radius: 22px;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.2' numOctaves='2' stitchTiles='stitch' seed='5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 300px 300px;
+    mix-blend-mode: screen;
+    transition: opacity 0.15s ease;
+  }
+  .tv__static.on { opacity: 0.85; animation: staticShake 0.15s steps(6) infinite; }
+  @keyframes staticShake {
+    0%   { background-position: 0% 0%; }
+    20%  { background-position: 30% 10%; }
+    40%  { background-position: 15% 45%; }
+    60%  { background-position: 50% 25%; }
+    80%  { background-position: 10% 30%; }
+    100% { background-position: 35% 50%; }
+  }
+
+  /* Slight phosphor flicker */
+  .tv__flicker {
+    position: absolute;
+    inset: 8px;
+    border-radius: 22px;
+    pointer-events: none;
+    z-index: 12;
+    background: rgba(232, 153, 104, 0.04);
+    mix-blend-mode: screen;
+    animation: flicker 5s infinite;
+  }
+  @keyframes flicker {
+    0%, 96%, 100% { opacity: 0; }
+    97% { opacity: 0.6; }
+    98% { opacity: 0.1; }
+    99% { opacity: 0.4; }
+  }
+
+  /* OSD (On-Screen Display) */
+  .tv__osd {
+    position: absolute;
+    inset: 8px;
+    border-radius: 22px;
+    pointer-events: none;
+    z-index: 15;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #f5e6d0;
+    text-shadow:
+      0 0 4px rgba(232, 153, 104, 0.8),
+      0 0 8px rgba(232, 153, 104, 0.4);
+  }
+  .tv__osd-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .tv__channel {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+  .tv__rec {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tv__rec-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #ff4136;
+    box-shadow: 0 0 8px rgba(255, 65, 54, 0.7);
+    animation: rec 1.2s ease-in-out infinite;
+  }
+
+  .tv__osd-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-transform: uppercase;
+  }
+  .tv__timecode {
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+  }
+  .tv__label {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    max-width: 55%;
+    text-align: right;
+  }
+
+  /* TV control panel */
+  .tv__controls {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6px;
+  }
+  .tv__brand {
+    font-size: 14px;
+    color: rgba(255, 220, 180, 0.5);
+    font-style: italic;
+  }
+  .tv__knobs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tv__knob {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #6a4a38, #1d1108);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 220, 180, 0.2),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.6);
+  }
+  .tv__speaker {
+    display: grid;
+    grid-template-columns: repeat(3, 4px);
+    grid-template-rows: repeat(2, 4px);
+    gap: 3px;
+    margin-left: 6px;
+  }
+  .tv__speaker span {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Floor shadow */
+  .tv__shadow {
+    width: 80%;
+    height: 24px;
+    margin-top: 18px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.35), transparent 70%);
+    filter: blur(4px);
+    border-radius: 50%;
+  }
+
+  @media (max-width: 1100px) {
+    .path__track { height: calc(var(--count) * 90vh + 20vh); }
+    .path__inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding-top: 100px;
+      padding-bottom: 20px;
+    }
+    .path__info { gap: 18px; max-height: none; min-height: 0; }
+    .path__header .path__lead { display: none; }
+    .path__heading { font-size: 28px; }
+    .path__desc { font-size: 14px; }
+    .path__visual { max-width: 340px; margin: 0 auto; }
+    .path__slides { min-height: 180px; }
+    .tv { padding: 20px 20px 16px; border-radius: 22px 22px 16px 16px; }
+    .tv__osd { font-size: 10px; padding: 14px 16px; }
+    .tv__label { font-size: 12px; }
+  }
+</style>
+
+<script>
+  const path = document.querySelector<HTMLElement>('.path');
+  const track = path?.querySelector<HTMLElement>('.path__track');
+  const slides = document.querySelectorAll<HTMLElement>('.path__slide');
+  const placeholders = document.querySelectorAll<HTMLElement>('.tv__placeholder');
+  const dots = document.querySelectorAll<HTMLElement>('.path__dot');
+  const counter = document.getElementById('path-current');
+  const videos = document.querySelectorAll<HTMLVideoElement>('.tv__video');
+  const staticEl = document.getElementById('tv-static');
+
+  // Lazy-attach video sources when section approaches viewport
+  const ensureSrc = (v: HTMLVideoElement) => {
+    if (!v.src && v.dataset.src) {
+      v.src = v.dataset.src;
+      v.load();
+    }
+  };
+
+  // Load all path videos when the Path section gets near the viewport (once)
+  const pathEl = document.querySelector<HTMLElement>('.path');
+  if (pathEl) {
+    const pathIO = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          videos.forEach((v) => ensureSrc(v));
+          pathIO.disconnect();
+        }
+      });
+    }, { rootMargin: '600px 0px' });
+    pathIO.observe(pathEl);
+  }
+  const channelEl = document.getElementById('tv-channel');
+  const timecodeEl = document.getElementById('tv-timecode');
+  const labelEl = document.getElementById('tv-label');
+  const count = slides.length;
+
+  const channels = ['CH·01', 'CH·02', 'CH·03', 'CH·04'];
+  const timecodes = ['00:00:07', '00:00:12', '00:00:18', '00:00:22'];
+  const labels = ['Первые ноты', 'Чувство ритма', 'Твой первый голос', 'Ты уже ты'];
+
+  const playVideo = (index: number) => {
+    videos.forEach((v, i) => {
+      if (i === index) {
+        ensureSrc(v);
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  };
+
+  if (track && count) {
+    let currentIndex = 0;
+
+    const setActive = (index: number) => {
+      if (index === currentIndex) return;
+
+      // Static burst
+      staticEl?.classList.add('on');
+      setTimeout(() => staticEl?.classList.remove('on'), 180);
+
+      slides[currentIndex]?.classList.remove('active');
+      videos[currentIndex]?.classList.remove('active');
+      placeholders[currentIndex]?.classList.remove('active');
+      dots[currentIndex]?.classList.remove('active');
+
+      currentIndex = index;
+
+      slides[currentIndex]?.classList.add('active');
+      videos[currentIndex]?.classList.add('active');
+      placeholders[currentIndex]?.classList.add('active');
+      dots[currentIndex]?.classList.add('active');
+
+      if (counter) counter.textContent = String(currentIndex + 1).padStart(2, '0');
+      if (channelEl) channelEl.textContent = channels[currentIndex] || '';
+      if (timecodeEl) timecodeEl.textContent = timecodes[currentIndex] || '';
+      if (labelEl) labelEl.textContent = labels[currentIndex] || '';
+
+      playVideo(currentIndex);
+    };
+
+    // init
+    slides[0]?.classList.add('active');
+    videos[0]?.classList.add('active');
+    placeholders[0]?.classList.add('active');
+    dots[0]?.classList.add('active');
+    playVideo(0);
+
+    const onScroll = () => {
+      const rect = track.getBoundingClientRect();
+      const scrollable = track.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+      const index = Math.min(count - 1, Math.floor(progress * count * 0.999));
+      setActive(index);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  }
+</script>

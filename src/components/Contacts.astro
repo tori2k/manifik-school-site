@@ -1,0 +1,338 @@
+---
+const address = 'Орехово-Зуево, улица Ленина, 99';
+const phones = [
+  { href: 'tel:+79154084012', label: '+7 915 408-40-12' },
+  { href: 'tel:+79955084012', label: '+7 995 508-40-12' },
+];
+const yclients = 'https://n1543290.yclients.com';
+// Yandex static map (Ленина 99, Орехово-Зуево)
+// Uses a public static map URL (no API key needed for basic static images)
+---
+<section class="contacts" id="contacts">
+  <div class="container-x">
+    <div class="contacts__head reveal">
+      <div class="sec-tag">Записаться</div>
+      <h2 class="sec-title">Приходи —<br/>познакомимся <em>без обязательств</em></h2>
+      <p class="sec-sub">Напиши или позвони — выберем удобное время. На первом занятии вместе поймём твой вектор развития.</p>
+    </div>
+
+    <div class="contacts__grid">
+      <!-- LEFT: Contact methods -->
+      <div class="contacts__panel reveal-left">
+        <!-- Primary CTA -->
+        <a href={yclients} target="_blank" rel="noopener" class="contacts__cta">
+          <div class="contacts__cta-top">
+            <span class="contacts__cta-label">Онлайн-запись</span>
+            <span class="contacts__cta-arrow">↗</span>
+          </div>
+          <div class="contacts__cta-title serif">Записаться на занятие</div>
+          <div class="contacts__cta-sub">Через YClients — сразу выбрать день и время</div>
+        </a>
+
+        <!-- Phones -->
+        <div class="contacts__block">
+          <div class="contacts__block-label">Телефоны</div>
+          <div class="contacts__phones">
+            {phones.map(p => (
+              <a href={p.href} class="contacts__phone">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.6 2.81.72A2 2 0 0122 16.92z"/>
+                </svg>
+                {p.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="contacts__block">
+          <div class="contacts__block-label">Адрес</div>
+          <div class="contacts__address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            {address}
+          </div>
+          <div class="contacts__address-note">Главное здание школы, вход со стороны ул. Ленина</div>
+        </div>
+
+        <!-- Socials -->
+        <div class="contacts__socials">
+          <a href="https://t.me/manifik_vocal" target="_blank" rel="noopener" class="contacts__social" aria-label="Telegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.53 8.15l-1.78 8.4c-.13.6-.48.75-.98.47l-2.7-2-1.3 1.26c-.15.14-.27.27-.55.27l.2-2.76 5.03-4.55c.22-.2-.05-.3-.34-.12l-6.22 3.92-2.68-.84c-.58-.18-.6-.58.12-.86l10.48-4.04c.49-.18.91.12.75.85z"/></svg>
+            <span>Telegram</span>
+          </a>
+          <a href="https://vk.ru/manifik_school" target="_blank" rel="noopener" class="contacts__social" aria-label="VKонтакте">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 4H3a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V5a1 1 0 00-1-1zm-3.6 12h-1.3c-.5 0-.6-.4-1.5-1.2-.8-.7-1.1-.8-1.3-.8-.3 0-.4.1-.4.5v1.2c0 .3-.1.5-.8.5-1.3 0-2.7-.8-3.7-2.2-1.5-2.2-1.9-3.8-1.9-4.2 0-.2.1-.4.4-.4h1.3c.3 0 .4.1.5.4.6 1.8 1.6 3.4 2 3.4.2 0 .2-.1.2-.5V11c0-.9-.5-1-.5-1.3 0-.1.1-.3.4-.3h2c.3 0 .4.1.4.4v2.5c0 .3.1.4.2.4.2 0 .3-.1.6-.4.9-1 1.5-2.5 1.5-2.5.1-.2.2-.3.5-.3h1.3c.4 0 .5.2.4.5-.2.7-1.6 2.7-1.6 2.8-.2.2-.2.3 0 .5.1.1.6.6 1 1 .7.7 1.2 1.3 1.3 1.7.1.4-.1.5-.4.5z"/></svg>
+            <span>VKонтакте</span>
+          </a>
+          <a href="https://www.instagram.com/manifik_school" target="_blank" rel="noopener" class="contacts__social" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://max.ru/join/0PSg2DkKD7brfJtGJzJ7uTSSOwfWdmIT103Np3zpi4Y" target="_blank" rel="noopener" class="contacts__social" aria-label="MAX">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h3l3 7 3-7h3v16h-3V9.5L9.5 16h-1L6 9.5V20H3V4zm15 0h3v16h-3V4z"/></svg>
+            <span>MAX</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Map -->
+      <div class="contacts__map reveal-right">
+        <div class="map__frame">
+          <!-- Yandex static map image; can be upgraded to interactive iframe later -->
+          <img
+            src="https://static-maps.yandex.ru/1.x/?ll=38.975,55.803&size=600,600&z=16&l=map&pt=38.975,55.803,pm2rdm"
+            alt="Карта — Орехово-Зуево, ул. Ленина 99"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="map__fallback">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div class="map__fallback-title serif">Орехово-Зуево</div>
+            <div class="map__fallback-sub">ул. Ленина, 99</div>
+          </div>
+        </div>
+
+        <!-- Pin card floating -->
+        <div class="map__pin-card">
+          <div class="map__pin-top">
+            <div class="map__pin-dot"></div>
+            Вы здесь
+          </div>
+          <div class="map__pin-title serif">Школа «Манифик»</div>
+          <div class="map__pin-sub">{address}</div>
+          <a href={`https://yandex.ru/maps/?text=${encodeURIComponent(address)}`} target="_blank" rel="noopener" class="map__pin-link">
+            Открыть в Яндекс.Картах
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacts { padding: 80px 0 120px; }
+  .contacts__head { margin-bottom: 60px; max-width: 720px; }
+
+  .contacts__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+  }
+
+  /* Panel */
+  .contacts__panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .contacts__cta {
+    display: block;
+    padding: 32px;
+    border-radius: 22px;
+    background: var(--accent);
+    color: var(--bg);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 20px 40px color-mix(in oklab, var(--accent) 30%, transparent);
+  }
+  .contacts__cta:hover {
+    background: var(--accent-3);
+    transform: translateY(-3px);
+    box-shadow: 0 30px 70px color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+  .contacts__cta-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 16px;
+  }
+  .contacts__cta-arrow { font-size: 20px; }
+  .contacts__cta-title {
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .contacts__cta-sub {
+    font-size: 14px;
+    opacity: 0.85;
+  }
+
+  .contacts__block {
+    padding: 24px;
+    border-radius: 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .contacts__block-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .contacts__phones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .contacts__phone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    transition: color 0.3s;
+    font-variant-numeric: tabular-nums;
+  }
+  .contacts__phone:hover { color: var(--accent); }
+  .contacts__phone svg { color: var(--accent); }
+
+  .contacts__address {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .contacts__address svg { color: var(--accent); flex-shrink: 0; }
+  .contacts__address-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    padding-left: 26px;
+  }
+
+  .contacts__socials {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .contacts__social {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border-2);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+  .contacts__social:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  /* Map */
+  .contacts__map {
+    position: relative;
+    min-height: 440px;
+  }
+  .map__frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--border-2);
+    background: var(--bg-soft);
+  }
+  .map__frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(15%) contrast(0.95);
+  }
+  .map__fallback {
+    display: none;
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--muted);
+  }
+  .map__fallback-title {
+    font-size: 22px;
+    color: var(--text);
+  }
+
+  .map__pin-card {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: var(--bg-card);
+    padding: 18px 22px;
+    border-radius: 16px;
+    border: 1px solid var(--border-2);
+    box-shadow: 0 20px 40px color-mix(in oklab, var(--accent) 10%, transparent);
+    backdrop-filter: blur(10px);
+    max-width: 320px;
+  }
+  .map__pin-top {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .map__pin-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 30%, transparent);
+    animation: pinPulse 2s ease-in-out infinite;
+  }
+  @keyframes pinPulse {
+    0%, 100% { box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 30%, transparent); }
+    50%      { box-shadow: 0 0 0 10px color-mix(in oklab, var(--accent) 0%, transparent); }
+  }
+  .map__pin-title {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .map__pin-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .map__pin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.2px;
+  }
+
+  @media (max-width: 900px) {
+    .contacts__grid { grid-template-columns: 1fr; }
+    .contacts__map { min-height: 360px; }
+    .contacts__cta-title { font-size: 24px; }
+  }
+</style>

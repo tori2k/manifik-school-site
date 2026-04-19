@@ -1,0 +1,129 @@
+---
+const items = [
+  {
+    q: 'Нужно ли уметь петь, чтобы начать?',
+    a: 'Нет. Пение — это навык, а не талант. Все мы рождаемся с голосом и способностью им управлять. Мы поможем раскрыть то, что уже есть.',
+  },
+  {
+    q: 'Можно ли начать взрослым?',
+    a: 'Да. Половина наших учеников — взрослые. Некоторые пришли после 40, 50, 60 лет. Голос поддаётся обучению в любом возрасте.',
+  },
+  {
+    q: 'Нужно ли петь перед другими?',
+    a: 'Нет. Занятия — только один на один с преподавателем. Никаких концертов, если сам этого не захочешь. Мы про комфорт и доверие.',
+  },
+  {
+    q: 'С какого возраста можно детям?',
+    a: 'Обычно с 6–7 лет — когда ребёнок уже может сосредоточиться на занятии. Преподаватели работают мягко и бережно, без давления.',
+  },
+  {
+    q: 'Есть ли онлайн-занятия?',
+    a: 'Да, большинство направлений — вокал, фортепиано, теория, английский — работают и онлайн через Zoom. Формат обсуждаем на первой встрече.',
+  },
+  {
+    q: 'Что происходит на первом занятии?',
+    a: 'Знакомство, разговор, мини-диагностика голоса — вместе определим твой вектор развития: направление, комфортный темп, что откликается именно тебе. Ты можешь попробовать занятия у разных педагогов и выбрать того, с кем резонирует.',
+  },
+  {
+    q: 'Сколько длится занятие?',
+    a: 'Стандартное занятие — 45 минут. Для детей младшего возраста возможны сокращённые варианты. Частота — обычно раз в неделю.',
+  },
+  {
+    q: 'Есть ли скидки при покупке нескольких занятий?',
+    a: 'Да. Пакеты на 4 и 8 занятий со скидкой — уточни в сообщении, рассчитаем под твой график.',
+  },
+];
+---
+<section class="faq" id="faq">
+  <div class="container-x faq__inner">
+    <div class="faq__head reveal">
+      <div class="sec-tag">Частые вопросы</div>
+      <h2 class="sec-title">Если сомневаешься —<br/>это <em>нормально</em></h2>
+      <p class="sec-sub">Собрали всё, что чаще всего спрашивают. Если твоего вопроса нет — напиши в Telegram, ответим лично.</p>
+    </div>
+
+    <div class="faq__list">
+      {items.map((it, i) => (
+        <details class="faq__item reveal" style={`transition-delay: ${0.05 + i * 0.04}s`}>
+          <summary>
+            <span class="faq__q">{it.q}</span>
+            <span class="faq__plus">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg>
+            </span>
+          </summary>
+          <p class="faq__a">{it.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq { padding: 80px 0 120px; }
+  .faq__inner {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .faq__head {
+    position: sticky;
+    top: 100px;
+  }
+
+  .faq__list { display: flex; flex-direction: column; }
+  .faq__item {
+    border-top: 1px solid var(--border-2);
+    transition: background 0.3s;
+  }
+  .faq__item:last-child { border-bottom: 1px solid var(--border-2); }
+  .faq__item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 24px 8px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.005em;
+    transition: color 0.3s;
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item:hover summary { color: var(--accent); }
+
+  .faq__plus {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--border-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .faq__item[open] .faq__plus {
+    transform: rotate(45deg);
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .faq__item[open] summary { color: var(--accent); }
+
+  .faq__a {
+    padding: 0 46px 28px 0;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 640px;
+  }
+
+  @media (max-width: 1000px) {
+    .faq__inner { grid-template-columns: 1fr; gap: 40px; }
+    .faq__head { position: static; }
+    .faq__item summary { font-size: 16px; padding: 20px 4px 20px 0; }
+  }
+</style>
