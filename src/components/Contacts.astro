@@ -1,5 +1,6 @@
 ---
 const address = 'Орехово-Зуево, улица Ленина, 99';
+const yandexMapUrl = 'https://yandex.ru/maps/-/CHXoQYKX';
 const phones = [
   { href: 'tel:+79154084012', label: '+7 915 408-40-12' },
   { href: 'tel:+79955084012', label: '+7 995 508-40-12' },
@@ -45,8 +46,11 @@ const yclients = 'https://n1543290.yclients.com';
         </div>
 
         <!-- Address -->
-        <div class="contacts__block">
-          <div class="contacts__block-label">Адрес</div>
+        <a href={yandexMapUrl} target="_blank" rel="noopener" class="contacts__block contacts__block--link">
+          <div class="contacts__block-label">
+            <span>Адрес · Яндекс Карты</span>
+            <span class="contacts__award">🏆 Хорошее место 2026</span>
+          </div>
           <div class="contacts__address">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
@@ -54,8 +58,11 @@ const yclients = 'https://n1543290.yclients.com';
             </svg>
             {address}
           </div>
-          <div class="contacts__address-note">Главное здание школы, вход со стороны ул. Ленина</div>
-        </div>
+          <div class="contacts__address-note">
+            Рейтинг 5.0 · 27 отзывов · 56 фото —
+            <span class="contacts__address-link">смотреть на Яндекс.Картах ↗</span>
+          </div>
+        </a>
 
         <!-- Socials -->
         <div class="contacts__socials">
@@ -106,7 +113,7 @@ const yclients = 'https://n1543290.yclients.com';
           </div>
           <div class="map__pin-title serif">Школа «Манифик»</div>
           <div class="map__pin-sub">{address}</div>
-          <a href={`https://yandex.ru/maps/?text=${encodeURIComponent(address)}`} target="_blank" rel="noopener" class="map__pin-link">
+          <a href={yandexMapUrl} target="_blank" rel="noopener" class="map__pin-link">
             Открыть в Яндекс.Картах
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
           </a>
@@ -175,6 +182,14 @@ const yclients = 'https://n1543290.yclients.com';
     border-radius: 18px;
     background: var(--bg-card);
     border: 1px solid var(--border);
+    color: var(--text);
+    display: block;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .contacts__block--link:hover {
+    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px color-mix(in oklab, var(--accent) 12%, transparent);
   }
   .contacts__block-label {
     font-size: 11px;
@@ -183,6 +198,20 @@ const yclients = 'https://n1543290.yclients.com';
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .contacts__award {
+    color: var(--accent);
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .contacts__address-link {
+    color: var(--accent);
+    font-weight: 600;
   }
   .contacts__phones {
     display: flex;
