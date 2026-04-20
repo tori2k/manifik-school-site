@@ -88,21 +88,13 @@ const yclients = 'https://n1543290.yclients.com';
       <!-- RIGHT: Map -->
       <div class="contacts__map reveal-right">
         <div class="map__frame">
-          <!-- Yandex static map image; can be upgraded to interactive iframe later -->
-          <img
-            src="https://static-maps.yandex.ru/1.x/?ll=38.975,55.803&size=600,600&z=16&l=map&pt=38.975,55.803,pm2rdm"
-            alt="Карта — Орехово-Зуево, ул. Ленина 99"
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?ll=38.975%2C55.803&mode=search&oid=1066094028&ol=biz&z=17"
+            title="Яндекс Карты — Школа Манифик, ул. Ленина 99"
             loading="lazy"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          />
-          <div class="map__fallback">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            <div class="map__fallback-title serif">Орехово-Зуево</div>
-            <div class="map__fallback-sub">ул. Ленина, 99</div>
-          </div>
+            referrerpolicy="no-referrer"
+            allow="fullscreen"
+          ></iframe>
         </div>
 
         <!-- Pin card floating -->
@@ -284,24 +276,10 @@ const yclients = 'https://n1543290.yclients.com';
     border: 1px solid var(--border-2);
     background: var(--bg-soft);
   }
-  .map__frame img {
+  .map__frame iframe {
     width: 100%; height: 100%;
-    object-fit: cover;
-    filter: grayscale(15%) contrast(0.95);
-  }
-  .map__fallback {
-    display: none;
-    position: absolute;
-    inset: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: var(--muted);
-  }
-  .map__fallback-title {
-    font-size: 22px;
-    color: var(--text);
+    border: 0;
+    display: block;
   }
 
   .map__pin-card {
