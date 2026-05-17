@@ -83,6 +83,23 @@ const yclients = 'https://n1543290.yclients.com';
             <span>MAX</span>
           </a>
         </div>
+
+        <!-- Реквизиты + оферта -->
+        <div class="contacts__legal">
+          <div class="contacts__block-label">Реквизиты</div>
+          <div class="contacts__legal-info">
+            <span>ИП Романова М. Н.</span>
+            <span>ИНН 503411018500</span>
+            <span>ОГРНИП 323508100112622</span>
+          </div>
+          <a href="/oferta.pdf" target="_blank" rel="noopener" class="contacts__oferta">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            Договор-оферта (правила школы)
+          </a>
+        </div>
       </div>
 
       <!-- RIGHT: Map -->
@@ -257,6 +274,39 @@ const yclients = 'https://n1543290.yclients.com';
     transition: background 0.3s, border-color 0.3s, color 0.3s;
   }
   .contacts__social:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  /* Реквизиты + оферта */
+  .contacts__legal {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-2);
+  }
+  .contacts__legal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--text-2, var(--text));
+    opacity: 0.75;
+    margin-bottom: 14px;
+  }
+  .contacts__oferta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border-2);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+  .contacts__oferta:hover {
     background: var(--accent);
     color: var(--bg);
     border-color: var(--accent);

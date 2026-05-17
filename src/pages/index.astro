@@ -47,6 +47,13 @@ import Contacts from '../components/Contacts.astro';
         <div class="footer__label">© 2026</div>
         <span>Школа вокала «Манифик»</span>
       </div>
+      <div class="footer__col footer__legal">
+        <div class="footer__label">Реквизиты</div>
+        <span>ИП Романова М. Н.</span>
+        <span>ИНН 503411018500</span>
+        <span>ОГРНИП 323508100112622</span>
+        <a href="/oferta.pdf" target="_blank" rel="noopener">Договор-оферта</a>
+      </div>
     </div>
   </footer>
 </Layout>
@@ -59,7 +66,7 @@ import Contacts from '../components/Contacts.astro';
   }
   .footer__inner {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    grid-template-columns: 1.3fr 1fr 1fr 0.9fr 1.2fr;
     gap: 40px;
     align-items: start;
   }
@@ -102,6 +109,7 @@ import Contacts from '../components/Contacts.astro';
 
   @media (max-width: 900px) {
     .footer__inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer__legal { grid-column: 1 / -1; }
   }
   @media (max-width: 560px) {
     .footer__inner { grid-template-columns: 1fr; }
